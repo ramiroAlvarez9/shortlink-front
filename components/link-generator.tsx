@@ -97,33 +97,33 @@ export default function LinkGenerator() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Generar Link Corto</CardTitle>
+        <CardTitle>Generate Short Link</CardTitle>
         <CardDescription>
-          Ingresa una URL para generar un link corto
+          Enter a URL to generate a short link
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={generateShortLink} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="url">URL Original</Label>
+            <Label htmlFor="url">Original URL</Label>
             <div className="flex gap-2">
               <Input
                 id="url"
                 type="url"
-                placeholder="https://ejemplo.com/ruta-muy-larga-que-quieres-acortar"
+                placeholder="https://example.com/very-long-path-you-want-to-shorten"
                 value={url.largeUrl}
                 onChange={(e) => setUrl(prevUrls => ({ ...prevUrls, largeUrl: e.target.value }))}
                 required
               />
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? "Generando..." : "Generar"}
+                {isLoading ? "Generating..." : "Generate"}
               </Button>
             </div>
           </div>
 
           {url.shortUrl && (
             <div className="space-y-2 pt-4">
-              <Label htmlFor="shortUrl">Link Corto</Label>
+              <Label htmlFor="shortUrl">Short Link</Label>
               <div className="flex gap-2">
                 <Input
                   id="shortUrl"

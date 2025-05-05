@@ -121,23 +121,23 @@ export default function SavedLinks() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Links Guardados</CardTitle>
-        <CardDescription>Administra tus links acortados</CardDescription>
+        <CardTitle>Saved Links</CardTitle>
+        <CardDescription>Manage your shortened links</CardDescription>
       </CardHeader>
       <CardContent>
         {links.length === 0 ? (
           <div className="text-center py-8 text-muted-foreground">
-            No tienes links guardados. Genera algunos links primero.
+            You have no saved links. Generate some links first.
           </div>
         ) : (
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>URL Original</TableHead>
-                  <TableHead>Link Corto</TableHead>
-                  <TableHead>Creado</TableHead>
-                  <TableHead className="text-right">Acciones</TableHead>
+                  <TableHead>Original URL</TableHead>
+                  <TableHead>Short Link</TableHead>
+                  <TableHead>Created</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
