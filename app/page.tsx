@@ -1,5 +1,5 @@
-import LinkShortener from "@/components/link-shortener"
+import LinkShortener from "@/components/link-shortener";
 
 export default function Home() {
-  return <LinkShortener />
+  return <LinkShortener />;
 }

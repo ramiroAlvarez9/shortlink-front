@@ -23,8 +23,8 @@ const IdSchema = object({
 export default function LinkGenerator() {
   const [url, setUrl] = useState({
     largeUrl: "",
-    shortUrl: ""
-  })
+    shortUrl: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -40,7 +40,7 @@ export default function LinkGenerator() {
     }
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:8080/create", {
+      const response = await fetch("https://localhost:8080/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,10 +52,10 @@ export default function LinkGenerator() {
       const data = await response.json();
       const idData = parse(IdSchema, data);
       const newShortUrl = `${process.env.NEXT_PUBLIC_SERVER_HOST}/${idData.id}`;
-      setUrl(prevUrls => ({ ...prevUrls, shortUrl: newShortUrl }));
+      setUrl((prevUrls) => ({ ...prevUrls, shortUrl: newShortUrl }));
       const savedLinks = JSON.parse(localStorage.getItem("shortLinks") || "[]");
       savedLinks.push({
-        id: idData.id, 
+        id: idData.id,
         originalUrl: url.largeUrl,
         shortUrl: newShortUrl,
         createdAt: new Date().toISOString(),
@@ -98,9 +98,7 @@ export default function LinkGenerator() {
     <Card>
       <CardHeader>
         <CardTitle>Generate Short Link</CardTitle>
-        <CardDescription>
-          Enter a URL to generate a short link
-        </CardDescription>
+        <CardDescription>Enter a URL to generate a short link</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={generateShortLink} className="space-y-4">
@@ -112,7 +110,12 @@ export default function LinkGenerator() {
                 type="url"
                 placeholder="https://example.com/very-long-path-you-want-to-shorten"
                 value={url.largeUrl}
-                onChange={(e) => setUrl(prevUrls => ({ ...prevUrls, largeUrl: e.target.value }))}
+                onChange={(e) =>
+                  setUrl((prevUrls) => ({
+                    ...prevUrls,
+                    largeUrl: e.target.value,
+                  }))
+                }
                 required
               />
               <Button type="submit" disabled={isLoading}>
