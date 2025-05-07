@@ -41,7 +41,7 @@ export default function LinkGenerator() {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${process.env.SHORTENER_SERVER_HOST}/create`,
+        `${process.env.NEXT_PUBLIC_SHORTENER_SERVER_HOST}/create`,
         {
           method: "POST",
           headers: {
@@ -54,7 +54,7 @@ export default function LinkGenerator() {
       );
       const data = await response.json();
       const idData = parse(IdSchema, data);
-      const newShortUrl = `${process.env.SHORTENER_SERVER_HOST}/${idData.id}`;
+      const newShortUrl = `${process.env.NEXT_PUBLIC_SHORTENER_SERVER_HOST}/${idData.id}`;
       setUrl((prevUrls) => ({ ...prevUrls, shortUrl: newShortUrl }));
       const savedLinks = JSON.parse(localStorage.getItem("shortLinks") || "[]");
       savedLinks.push({

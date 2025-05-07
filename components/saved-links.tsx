@@ -43,9 +43,12 @@ export default function SavedLinks() {
       setLinks(updatedLinks);
       localStorage.setItem("shortLinks", JSON.stringify(updatedLinks));
       try {
-        await fetch(`${process.env.SHORTENER_SERVER_HOST}/delete/${id}`, {
-          method: "DELETE",
-        });
+        await fetch(
+          `${process.env.NEXT_PUBLIC_SHORTENER_SERVER_HOST}/delete/${id}`,
+          {
+            method: "DELETE",
+          },
+        );
         toast({
           title: "Link eliminado",
           description: "El link ha sido eliminado de tu lista",
