@@ -38,6 +38,10 @@ export default function LinkGenerator() {
       });
       return;
     }
+    console.log(
+      "public variable: ",
+      process.env.NEXT_PUBLIC_SHORTENER_SERVER_HOST,
+    );
     try {
       setIsLoading(true);
       const response = await fetch(
