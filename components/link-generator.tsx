@@ -30,6 +30,7 @@ export default function LinkGenerator() {
 
   const generateShortLink = async (e: React.FormEvent) => {
     e.preventDefault();
+    setCopied(false);
     if (!url.largeUrl) {
       toast({
         title: "Error",
