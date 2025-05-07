@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/hooks/use-toast"; 
 import { Toaster } from "@/components/ui/toaster";
 import { Copy, Trash2, ExternalLink } from "lucide-react";
 import {
@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/table";
 import { formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
-import { url } from "inspector";
 
 interface SavedLink {
   id: number;
@@ -50,8 +49,8 @@ export default function SavedLinks() {
           },
         );
         toast({
-          title: "Link eliminado",
-          description: "El link ha sido eliminado de tu lista",
+          title: "Link deleted",
+          description: "The link has been removed from your list",
         });
       } catch (error) {
         toast({
@@ -95,7 +94,13 @@ export default function SavedLinks() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => navigator.clipboard.writeText(link.shortUrl)}
+                onClick={() => {
+                  navigator.clipboard.writeText(link.shortUrl);
+                  toast({
+                    title: "Link copied to clipboard",
+                    description: "The shortened URL has been copied to your clipboard",
+                  });
+                }}
                 className="h-8 w-8"
               >
                 <Copy className="h-4 w-4" />

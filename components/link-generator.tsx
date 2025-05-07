@@ -10,11 +10,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/hooks/use-toast"; 
 import { Toaster } from "@/components/ui/toaster";
 import { Copy, CheckCircle } from "lucide-react";
 import { object, string, parse } from "valibot";
-import { NEXT_BODY_SUFFIX } from "next/dist/lib/constants";
 
 const IdSchema = object({
   id: string(),
@@ -34,7 +33,7 @@ export default function LinkGenerator() {
     if (!url.largeUrl) {
       toast({
         title: "Error",
-        description: "Por favor ingresa una URL válida",
+        description: "Please enter a valid URL",
         variant: "destructive",
       });
       return;
@@ -70,14 +69,14 @@ export default function LinkGenerator() {
       });
       localStorage.setItem("shortLinks", JSON.stringify(savedLinks));
       toast({
-        title: "¡Link generado!",
-        description: "Tu link corto ha sido creado y guardado",
+        title: "Link generated!",
+        description: "Your short link has been created and saved",
       });
     } catch (error) {
       console.error("Catch error: ", error);
       toast({
         title: "Error",
-        description: "Hubo un problema al generar el link",
+        description: "There was a problem generating the link",
         variant: "destructive",
       });
     } finally {
@@ -90,13 +89,13 @@ export default function LinkGenerator() {
       await navigator.clipboard.writeText(url.shortUrl);
       setCopied(true);
       toast({
-        title: "¡Copiado!",
-        description: "Link copiado al portapapeles",
+        title: "Copied!",
+        description: "Link copied to clipboard",
       });
     } catch (error) {
       toast({
         title: "Error",
-        description: "No se pudo copiar al portapapeles",
+        description: "Could not copy to clipboard",
         variant: "destructive",
       });
     }
