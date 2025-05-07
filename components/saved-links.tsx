@@ -43,7 +43,7 @@ export default function SavedLinks() {
       setLinks(updatedLinks);
       localStorage.setItem("shortLinks", JSON.stringify(updatedLinks));
       try {
-        await fetch(`https://localhost:8080/delete/${id}`, {
+        await fetch(`${process.env.SHORTENER_SERVER_HOST}/delete/${id}`, {
           method: "DELETE",
         });
         toast({
